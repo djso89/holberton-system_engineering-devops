@@ -1,0 +1,1 @@
+This is a readme page in 0x02_shell_redirections.
