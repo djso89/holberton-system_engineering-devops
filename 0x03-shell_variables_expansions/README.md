@@ -1,0 +1,1 @@
+This is read me page in 0x03 Shell, init files, variables and expansions
