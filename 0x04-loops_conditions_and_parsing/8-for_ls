@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# a Bash script that displays the contents in list format in current
+# directory
+for i in *;
+do
+	echo "$i" | cut -d'-' -f2
+done
