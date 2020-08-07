@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# configure a new ubuntu machine
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo ufw allow "Nginx HTTP"
+sudo echo "Holberton School" > /var/www/html/index.nginx-debian.html
+sudo sed -i "/listen 80 default_server/a rewrite ^/redirect_me https://google.com perminant;" /etc/nginx/sites-available/default
+sudo ufw allow 'Nginx HTTP'
+sudo service nginx restart
