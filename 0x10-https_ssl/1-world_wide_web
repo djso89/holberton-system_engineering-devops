@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 # Display information about subdomains
 
-diggs () {
-    a=$(dig $2.$1 | grep -A1 'ANSWER SECTION:' | tail -n1 )
-    echo "$2 $a" |
-    awk '{print "The subdomain " $1 " is a " $5 " record and points to " $6 ""}'
+print_dig () {
+	OUT=$( dig "$1.$2" | grep "^$1." | sed -e "s/[[:space:]]\+/ /g" )
+	REC=$( echo "$OUT" | cut -f4 -d" " )
+	DEST=$( echo "$OUT" | cut -f5 -d" " )
+	awk -v subd="$1" -v rec="$REC" -v dest="$DEST" 'BEGIN {print "The subdomain "subd" is a "rec" record and points to "dest}'
 }
 
-if [ "$#" == 1 ]; then
-    diggs "$1" "www"
-    diggs "$1" "lb-01"
-    diggs "$1" "web-01"
-    diggs "$1" "web-02"
-elif [ "$#" == 2 ]; then
-    echo -n "The subdomain $2 is a "
-    dig $2.$1 | grep -A1 'ANSWER SECTION:' | tail -n1 |
-    awk '{print $4 " record and points to " $5}'
+if [[ $# -eq 2 ]]
+then
+	print_dig "$2" "$1"
+elif [[ $# -eq 1 ]]
+then
+	print_dig "www" "$1"
+	print_dig "lb-01" "$1"
+	print_dig "web-01" "$1"
+	print_dig "web-02" "$1"
+else
+	echo "Invalid number of commands"
 fi
