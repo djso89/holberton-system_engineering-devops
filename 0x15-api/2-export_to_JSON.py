@@ -23,5 +23,5 @@ if __name__ == '__main__':
             'username': user_json.json().get("username")
         })
 
-    with open("{}.csv".format(argv[1]), 'w') as file:
-        json.dump(usr_info_dict, file)
+    with open("{}.csv".format(argv[1]), 'w') as file_o:
+        json.dump(usr_info_dict, file_o)
