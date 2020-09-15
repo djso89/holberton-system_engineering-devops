@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """  script to export data in the CSV format."""
 
+import json
 import csv
 import requests
 from sys import argv
@@ -14,7 +15,7 @@ if __name__ == '__main__':
         .format(argv[1])).json()
 
     usr_info_dict = {}
-    usr_info_dict = ["{}".format(argv[1])] = []
+    usr_info_dict["{}".format(argv[1])] = []
     for x in tasks_json:
         usr_info_dict["{}".format(argv[1])].append({
             'task': x.get("title"),
