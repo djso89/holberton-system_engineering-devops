@@ -7,10 +7,14 @@ import requests
 
 
 def top_ten(subreddit):
-    site = 'https://www.reddit.com/r/{}/hot.json?=10'.format(subreddit)
-    req = requests.get(site, headers={'User-agent':'Kuppa'}).json()
-    if 'message' in req and req['message'] == 'Not Found:':
-        print("None")
-        return
-    for i in req['data']['children']:
-        print(i['data']['title'])
+    site = 'https://www.reddit.com/r/{}/hot.json?limit=10'.format(subreddit)
+    h = {'User-Agent': 'Mozilla 5.0'}
+    req = requests.get(site, headers=h)
+
+    if req.status_code == 404:
+        print('None')
+    else:
+        data = req.json().get('data')
+        posts = data.get('children')
+        for i in posts:
+            print(i.get('data').get('title'))
