@@ -4,6 +4,6 @@ exec { 'set limit to 2000':
   command => "sed -i 's/15/2000/' /etc/default/nginx"
 }
 
-exec { 'reboot the nginx':
+exec { 'reboot nginx':
   command => '/usr/sbin/service nginx restart'
 }
