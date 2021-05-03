@@ -22,6 +22,5 @@ if __name__ == '__main__':
             'completed': x.get('completed'),
             'username': user_json.json().get("username")
         })
-
     with open("{}.json".format(argv[1]), 'w') as file_o:
         json.dump(usr_info_dict, file_o)
