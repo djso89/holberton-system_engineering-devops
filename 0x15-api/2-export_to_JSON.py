@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """ script to export data in the json format."""
-
 import json
 import csv
 import requests
 from sys import argv
+
 
 if __name__ == '__main__':
     user_json = requests.get(
