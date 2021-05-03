@@ -25,7 +25,7 @@ if __name__ == "__main__":
         if (tasks_json[i].get("completed")) is True:
             tasks_done.append(tasks_json[i].get("title"))
 
-    print("Employee EMPLOYEE_NAME is done with tasks({}/{}):".
+    print("Employee {} is done with tasks({}/{}):".
           format(name, len(tasks_done), len(tasks_json)))
 
     for i in range(0, len(tasks_done)):
